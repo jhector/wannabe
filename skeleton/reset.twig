@@ -1,0 +1,27 @@
+{% extends "base.twig" %}
+
+{% block navigation %}
+<li><a href="?site=welcome">Welcome</a></li>
+<li><a href="?site=about">About me</a></li>
+<li><a href="?site=skills">Skills</a></li>
+<li><a href="?site=benefits">Benefits</a></li>
+<li><a href="?site=contact">Contact</a></li>
+<li><a href="?site=bug">Bug bounty</a></li>
+<li><a href="?site=news">News</a></li>
+{% endblock %}
+
+{% block content %}
+<div class="span12">
+	An email was send to you with your reset code
+	<h3>Update your password:</h3>
+	<form method="get" action="" class="form">
+		<input type="hidden" name="action" value="update" />
+		<input type="hidden" name="site" value="lost" />
+		<input type="hidden" name="id" value="{{ resetid }}" />
+		<input name="pass" class="span12" type="password" placeholder="New password" />
+		<input name="pass2" class="span12" type="password" placeholder="Retype new password" />
+		<input name="code" class="span10" type="text" placeholder="Reset code" />
+		<button style="float:right;" type="submit" class="btn btn-primary">Update</button>
+	</form>
+</div>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends "base.twig" %}
+
+{% block navigation %}
+<li><a href="?site=welcome">Welcome</a></li>
+<li><a href="?site=about">About me</a></li>
+<li><a href="?site=skills">Skills</a></li>
+<li><a href="?site=benefits">Benefits</a></li>
+<li><a href="?site=contact">Contact</a></li>
+<li><a href="?site=bug">Bug bounty</a></li>
+<li><a href="?site=news">News</a></li>
+{% endblock %}
+
+{% block content %}
+<div class="span12">
+	{% if prev %}
+	<div>
+		<div class="span12">
+			<h4><strong>{{ title|raw }}</strong></h4>
+		</div>
+		<div style="font-size:12px;" class="span12">
+			<i class="icon-user"></i> by {{ author }}
+			| <i class="icon-calendar"></i>{{ created|date }}
+		</div>
+		<div class="span12">
+			{{ text|raw }}
+			<br />
+			<br />
+		</div>
+	</div>
+	{% endif %}
+	<h3>Add news entry:<h3>
+	<form enctype="multipart/form-data" method="post" action="?site=panel">
+		<div class="controls controls-row">
+			<input id="name" name="title" type="text" class="span12" placeholder="Title" value="{{ title|raw }}" />
+		</div>
+		<div class="controls">
+			<textarea id="text" name="text" class="span12" placeholder="News" rows="5">{{ text|raw }}</textarea>
+		</div>
+		<div class="controls">
+			<input name="password" class="span12" type="password" placeholder="Admin password" />
+		</div>
+		<div class="controls">
+			<button id="contact-submit" type="submit" name="action" value="save" class="btn btn-primary input-medium pull-right" style="margin-left:10px;">Save</button>
+			<button id="contact-submit" type="submit" name="action" value="prev" class="btn btn-primary input-medium pull-right">Preview</button>
+		</div>
+	</form>
+</div>
+{% endblock %}

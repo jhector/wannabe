@@ -1,0 +1,24 @@
+{% extends "base.twig" %}
+
+{% block navigation %}
+<li><a href="?site=welcome">Welcome</a></li>
+<li><a href="?site=about">About me</a></li>
+<li><a href="?site=skills">Skills</a></li>
+<li><a href="?site=benefits">Benefits</a></li>
+<li><a href="?site=contact">Contact</a></li>
+<li><a href="?site=bug">Bug bounty</a></li>
+<li><a href="?site=news">News</a></li>
+{% endblock %}
+
+{% block content %}
+<div class="span12">
+	<h3>Reset password:</h3>
+	<form method="get" action="" class="form-inline">
+		<input type="hidden" name="action" value="reset" />
+		<input type="hidden" name="site" value="lost" />
+		<input name="username" class="span10" type="text" placeholder="Username" />
+		<button type="submit" class="btn btn-primary">Reset</button>
+	</form>
+	{{ complete|makestatus }}
+</div>
+{% endblock %}

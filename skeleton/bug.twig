@@ -1,0 +1,69 @@
+{% extends "base.twig" %}
+
+{% block navigation %}
+<li><a href="?site=welcome">Welcome</a></li>
+<li><a href="?site=about">About me</a></li>
+<li><a href="?site=skills">Skills</a></li>
+<li><a href="?site=benefits">Benefits</a></li>
+<li><a href="?site=contact">Contact</a></li>
+<li class="active"><a href="?site=bug">Bug bounty</a></li>
+<li><a href="?site=news">News</a></li>
+{% endblock %}
+
+{% block content %}
+<div class="span12">
+	Report a bug (in the unlikely event you can find any) regarding my website, and get rewarded for your cooperation. The size of the 'prove' image is limited to 100 kB.<br />
+	<br />
+	<table class="table table-striped table-condensed">
+		<thead>
+		<tr>
+			<th>Rating</th>
+			<th>Title</th>
+			<th>Prove</th>
+			<th>Approved</th>
+		</tr>
+		</thead>   
+		<tbody>
+			{% for bug in bugs %}
+			<tr>
+				{% if bug.rating == 1 %}
+				<td><span class="label label-important">Critical</span></td>
+				{% elseif bug.rating == 2 %}
+				<td><span class="label label-warning">Normal</span></td>
+				{% elseif bug.rating == 3 %}
+				<td><span class="label label-info">Minor</span></td>
+				{% else %}
+				<td><span class="label label-import">Critical</span></td>
+				{% endif %}
+				<td>{{ bug.title }}</td>
+				{% if bug.prove %}
+				<td><a href="?site=bug&action=dl&id={{ bug.id }}">download</a></td>
+				{% else %}
+				<td></td>
+				{% endif %}
+				{% if bug.approved == 1 %}
+				<td><span class="label label-warning">Pending</span></td>
+				{% elseif bug.approved == 2 %}
+				<td><span class="label label-success">Approved</span></td>
+				{% elseif bug.approved == 3 %}
+				<td><span class="label">Rejected</span></td>
+				{% else %}
+				<td><span class="label">Rejected</span></td>
+				{% endif %}
+			</tr>
+			{% endfor %}
+	  	</tbody>
+	</table>
+	<!-- TODO: form action -->
+	<form enctype="multipart/form-data" method="post" action="?site=bug&action=add" class="form-inline">
+		<select id="rate" name="rating" class="span2">
+			<option value="1" selected="">Critical</option>
+			<option value="2">Normal</option>
+			<option value="3">Minor</option>
+		</select>
+		<input name="title" class="span4" type="text"  placeholder="Title" >
+		<input name="prove" class="span4" type="file"  placeholder="Image">
+		<button type="submit" class="btn btn-primary">Add</button>
+    </form>
+</div>
+{% endblock %}

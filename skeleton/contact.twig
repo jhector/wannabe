@@ -1,0 +1,34 @@
+{% extends "base.twig" %}
+
+{% block navigation %}
+<li><a href="?site=welcome">Welcome</a></li>
+<li><a href="?site=about">About me</a></li>
+<li><a href="?site=skills">Skills</a></li>
+<li><a href="?site=benefits">Benefits</a></li>
+<li class="active"><a href="?site=contact">Contact</a></li>
+<li><a href="?site=bug">Bug bounty</a></li>
+<li><a href="?site=news">News</a></li>
+{% endblock %}
+
+{% block content %}
+<div class="span12">
+	<img src="images/img004_grey.jpg" /><br />
+	Elite Hacker / Cyber Security Expert<br />
+	<br />
+	<br />
+	<h2>Contact form</h2>
+	<form enctype="multipart/form-data" method="post" action="?site=contact&action=send">
+      <div class="controls controls-row">
+        <input id="name" name="name" type="text" class="span6" placeholder="Name"> 
+        <input id="email" name="email" type="text" class="span6" placeholder="Email address">
+      </div>
+      <div class="controls">
+        <textarea id="message" name="message" class="span12" placeholder="Your Message" rows="5"></textarea>
+      </div>
+      <div class="controls">
+        <div style="color:green; float:left;">{{ success }}</div>
+        <button id="contact-submit" type="submit" class="btn btn-primary input-medium pull-right">Send</button>
+      </div>
+  </form>
+</div>
+{% endblock %}

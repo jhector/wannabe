@@ -1,0 +1,32 @@
+{% extends "base.twig" %}
+
+{% block navigation %}
+<li><a href="?site=welcome">Welcome</a></li>
+<li><a href="?site=about">About me</a></li>
+<li><a href="?site=skills">Skills</a></li>
+<li><a href="?site=benefits">Benefits</a></li>
+<li><a href="?site=contact">Contact</a></li>
+<li><a href="?site=bug">Bug bounty</a></li>
+<li class="active"><a href="?site=news">News</a></li>
+{% endblock %}
+
+{% block content %}
+<div class="span12">
+	{% for entry in news %}
+	<div>
+		<div class="span12">
+			<h4><strong>{{ entry.title }}</strong></h4>
+		</div>
+		<div style="font-size:12px;" class="span12">
+			<i class="icon-user"></i> by {{ entry.author }}
+			| <i class="icon-calendar"></i>{{ entry.created }}
+		</div>
+		<div class="span12">
+			{{ entry.text }}
+			<br />
+			<br />
+		</div>
+	</div>
+	{% endfor %}
+</div>
+{% endblock %}
